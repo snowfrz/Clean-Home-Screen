@@ -1,4 +1,4 @@
-# Clean-Home-Screen
+# Clean Home Screen
 iOS jailbreak tweak that de-clutters SpringBoard
 
 # General Information

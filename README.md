@@ -1,7 +1,7 @@
 # Clean Home Screen
 iOS jailbreak tweak that de-clutters SpringBoard
 
-You can check it out [here](https://repo.dynastic.co/package/xyz.royalapps.cleanhomescreen)
+You can check it out [here](https://repo.dynastic.co/package/xyz.royalapps.cleanhomescreen).
 
 # General Information
 Clean Home Screen is available for free on Cydia, through the Dynastic Repo. To use it, add the source https://repo.dynastic.co on the Sources tab in Cydia, or use the "Add To Cydia" link provided on the [tweak page](https://repo.dynastic.co/package/xyz.royalapps.cleanhomescreen).

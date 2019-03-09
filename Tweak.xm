@@ -1,4 +1,6 @@
-// Copyright © 2018 Justin Proulx
+// Copyright © 2018-2019 Justin Proulx
+#import "Headers.h"
+
 %hook NSObject
 @interface NSObject (customObject)
 - (BOOL)isSettingOn:(NSString *)keyStr;
@@ -68,7 +70,6 @@
 %end
 
 %hook SBFloatingDockPlatterView
-#import "SBFloatingDockPlatterView.h"
 
 - (void)layoutSubviews
 {
@@ -87,7 +88,6 @@
 
 // icon labels
 %hook SBIconView
-#import "SBIconView.h"
 
 - (void)_applyIconLabelAlpha:(double)arg1
 {
@@ -186,7 +186,6 @@
 
 // home screen page indicators
 %hook SBIconListPageControl
-#import "SBIconListPageControl.h"
 
 - (id)_indicatorViewEnabled:(_Bool)arg1 index:(long long)arg2
 {
@@ -316,7 +315,6 @@
 
 // press home to unlock
 %hook SBUICallToActionLabel
-#import "SBUICallToActionLabel.h"
 
 -(void)layoutSubviews
 {
@@ -420,6 +418,102 @@
   {
     %orig;
   }
+}
+
+%end
+
+// Lock screen today view
+%hook SBPagedScrollView
+
+-(unsigned long long)currentPageIndex
+{
+  NSObject *object = [[NSObject alloc] init];
+  BOOL isSettingOn = [object isSettingOn:@"lstodayview"];
+
+  if (isSettingOn)
+  {
+    return (%orig > 0) ? %orig : 1;
+  }
+  else
+  {
+    return %orig;
+  }
+}
+
+-(double)pageRelativeScrollOffset
+{
+  NSObject *object = [[NSObject alloc] init];
+  BOOL isSettingOn = [object isSettingOn:@"lstodayview"];
+
+  if (isSettingOn)
+  {
+    return 1;
+  }
+  else
+  {
+    return %orig;
+  }
+}
+
+%end
+
+%hook SBDashBoardTodayPageViewController
+
+-(void)viewDidLoad
+{
+  NSObject *object = [[NSObject alloc] init];
+  BOOL isSettingOn = [object isSettingOn:@"lstodayview"];
+
+  if (isSettingOn)
+  {
+    [self.view removeFromSuperview];
+  }
+  else
+  {
+    %orig;
+  }
+}
+
+%end
+
+// home screen today view
+%hook SBHomeScreenTodayViewController
+
+-(void)viewDidLoad
+{
+  NSObject *object = [[NSObject alloc] init];
+  BOOL isSettingOn = [object isSettingOn:@"hstodayview"];
+
+  if (isSettingOn)
+  {
+    [self.view removeFromSuperview];
+  }
+  else
+  {
+    %orig;
+  }
+}
+
+%end
+
+%hook SBRootFolderView
+// Credit to Nepeta for this method's logic, Twitter: https://twitter.com/NepetaDev
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+  NSObject *object = [[NSObject alloc] init];
+  BOOL isSettingOn = [object isSettingOn:@"hstodayview"];
+
+  if (isSettingOn)
+  {
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+
+    if (scrollView.contentOffset.x < width) 
+    {
+      [scrollView setContentOffset:CGPointMake(width, 0)];
+    }
+  }
+
+  %orig;
 }
 
 %end

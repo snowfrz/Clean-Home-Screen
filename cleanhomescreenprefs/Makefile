@@ -1,5 +1,7 @@
 include $(THEOS)/makefiles/common.mk
 
+ARCHS = armv7 arm64 arm64e
+
 BUNDLE_NAME = CleanHomeScreenPrefs
 CleanHomeScreenPrefs_FILES = CHSRootListController.m
 CleanHomeScreenPrefs_INSTALL_PATH = /Library/PreferenceBundles

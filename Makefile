@@ -1,7 +1,7 @@
 DEBUG = 0
-PACKAGE_VERSION = 1.0.3
+PACKAGE_VERSION = 1.0.4
 
-ARCHS = armv7 arm64
+ARCHS = armv7 arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 

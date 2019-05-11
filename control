@@ -1,7 +1,7 @@
 Package: xyz.royalapps.cleanhomescreen
 Name: CleanHomeScreen
 Depends: mobilesubstrate,preferenceloader
-Version: 1.0.3
+Version: 1.0.4
 Architecture: iphoneos-arm
 Description: Remove all the clutter from your home screen and lock screen!
 Maintainer: Justin Proulx
